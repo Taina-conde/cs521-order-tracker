@@ -1,4 +1,5 @@
 class OrderTracker():
+    TAX = 0.09
     """Tracks a restaurant's orders in a list and prepares them in
     FIFO basis """
     def __init__(self,restaurant_name = '', menu_dict = {}, orders_list = []):
@@ -13,42 +14,43 @@ class OrderTracker():
             f'{len(self.__orders)} orders beeing prepared'
         )
     def __get_orders(self):
-        """A private method that returns the list of orders"""
+        """Private method that returns the list of orders"""
         return self.__orders
 
     def add_order(self, order):
-        """Public method that add an order to the end of the list of orders and
-        returns the modified list of orders"""
+        """Public method that add an order to the end of the list of orders 
+        and returns the modified list of orders"""
         orders_list = self.__get_orders()
         orders_list.append(order)
         return self.__orders
     
     def prepare_order(self):
-        """ Public method that removes the first order from the list of orders
-        and returns the order that was 'prepared' (removed)"""
+        """Public method that removes the first order from the list of 
+        orders and returns the order that was 'prepared' (removed)"""
         orders_list = self.__get_orders()
         return orders_list.pop(0)
     
+    def calculate_bill(self, order):
+        """Takes an order, calculates the bill and returns the total price"""
+        total_price = 0
+        for e in order:
+            total_price += self.menu[e]
+        return total_price * (1 + TAX)
+
+    
     def __len__(self):
-        """ The length of the object is the number of orders to be prepared"""
+        """The length of the object is the number of orders to be prepared"""
         return len(self.__orders)
-    
-
-    
-
-    
-
-    
-
-    
+     
     
 # Unit tests
 if __name__ == '__main__':
-    carmines_restaurant = OrderTracker('Carmines', {
+    carmines = OrderTracker('Carmines', {
         'Margerita Pizza': 25,
         'Seafood linguine': 40.5,
         'Bruschetta': 16.55,
         'Tiramissu cake': 9,
     })
-    print(carmines_restaurant)
-    print(len(carmines_restaurant))
+    print(carmines)
+    print(len(carmines))
+    carmines.add_order({'Seafood linguine', 'Bruschetta'})
