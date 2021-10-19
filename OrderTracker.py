@@ -1,5 +1,8 @@
 class OrderTracker():
+    """Tracks a restaurant's orders in a list and prepares them in
+    FIFO basis """
     def __init__(self,restaurant_name = '', menu_dict = {}, orders_list = []):
+        """class constructor"""
         self.name = restaurant_name
         self.menu = menu_dict
         self.__orders = orders_list
@@ -10,21 +13,27 @@ class OrderTracker():
             f'{len(self.__orders)} orders beeing prepared'
         )
     def __get_orders(self):
+        """A private method that returns the list of orders"""
         return self.__orders
 
     def add_order(self, order):
+        """Public method that add an order to the end of the list of orders and
+        returns the modified list of orders"""
         orders_list = self.__get_orders()
         orders_list.append(order)
         return self.__orders
     
     def prepare_order(self):
+        """ Public method that removes the first order from the list of orders
+        and returns the order that was 'prepared' (removed)"""
         orders_list = self.__get_orders()
         return orders_list.pop(0)
     
     def __len__(self):
+        """ The length of the object is the number of orders to be prepared"""
         return len(self.__orders)
     
-    
+
     
 
     
