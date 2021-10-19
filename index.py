@@ -18,10 +18,14 @@ if __name__ == '__main__':
                 name_str += line_str
             else:
                 stripped_str = line_str.strip()
+                # consider only the lines that have content to create the 
+                # menu dictionary
                 if stripped_str != '':
                     line_list = stripped_str.split(':')
                     print(line_list)
+                    # transform the keys to uppercase to make them uniform
                     menu_dict[line_list[0].upper()] = float(line_list[1])
+        
         print('menu dict', menu_dict)
         print('name : ', name_str)
 
