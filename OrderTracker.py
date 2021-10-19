@@ -3,6 +3,7 @@ class OrderTracker():
         self.name = restaurant_name
         self.menu = menu_dict
         self.__orders = orders_list
+
     def __repr__(self):
         return (
             f'{self.name} restaurant has '
@@ -20,7 +21,14 @@ class OrderTracker():
         orders_list = self.__get_orders()
         return orders_list.pop(0)
     
+    def __len__(self):
+        return len(self.orders_list)
     
+    
+    
+
+    
+
     
     
 # Unit tests
