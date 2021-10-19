@@ -9,6 +9,8 @@ Description: Main program using OrderTracker class
 from OrderTracker import OrderTracker
 
 def get_order():
+    """ Prompts the user for one order item at a time and returns
+    the a set with the order items, quantities in tuples"""
     order_set = set()
     is_order_done = False
     while is_order_done == False:
@@ -75,7 +77,7 @@ if __name__ == '__main__':
 
     # prompt the user to make a new order
     new_order = get_order()
-    
+
     print(new_order)
         
 
