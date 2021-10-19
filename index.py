@@ -12,40 +12,40 @@ def get_order():
     order_set = set()
     is_order_done = False
     while is_order_done == False:
-        order_input = input(
-                'Enter one order item and quantity separated by a comma'
-                '- for example: Your Dish, 1 '
+        if len(order_set) != 0:
+            is_done_input = input('Anything else: y/n ')
+            if is_done_input.lower() != 'y' and is_done_input.lower() != 'n':
+                print(
+                    'Enter y to continue ordering or n if you are done'
                 )
-        try:
-            item_quantity_list = order_input.split(',')
-            if len(item_quantity_list) >= 3:
-                pass
-            item = item_quantity_list[0]
-            quant = int(item_quantity_list[1])
-            if isinstance(item, str) == False:
-                raise TypeError
-  
-        except ValueError:
-            print()
-        except TypeError:
-            print(
-                'The first element must be a string and the second an integer'
-                )
-        else:
-            item_quantity_tuple = tuple(item_quantity_list)
-            order_set.add(item_quantity_tuple)
-            while True: 
-                is_done_input = input('Anything else: y/n ')
-                if is_done_input.lower() != 'y' and is_done_input.lower() != 'n':
-                    print(
-                        'Enter y to continue ordering or n if you are done'
+                continue
+            if is_done_input.lower() == 'n':
+                is_order_done = True
+        while is_order_done == False:
+            order_input = input(
+                    'Enter one order item and quantity separated by a comma'
+                    '- for example: Your Dish, 1 '
                     )
-                    continue
-                if is_done_input.lower() == 'n':
-                    is_order_done = True
-                if is_done_input.lower() == 'y':
-                    break
-            break
+            try:
+                item_quantity_list = order_input.split(',')
+                if len(item_quantity_list) >= 3:
+                    pass
+                item = item_quantity_list[0]
+                quant = int(item_quantity_list[1])
+                if isinstance(item, str) == False:
+                    raise TypeError
+
+            except ValueError:
+                print()
+            except TypeError:
+                print(
+                    'The first element must be a string and the second an integer'
+                    )
+            else:
+                item_quantity_tuple = (item.upper(), quant)
+                order_set.add(item_quantity_tuple)
+                
+                break
     return order_set
 
 if __name__ == '__main__':
