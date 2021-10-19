@@ -19,8 +19,7 @@ class OrderTracker():
 
     def __repr__(self):
         return (
-            f'{self.name} restaurant has '
-            f'{len(self.__orders)} orders beeing prepared'
+            f'{self.name} has {len(self.__orders)} orders beeing prepared'
         )
     def __get_orders(self):
         """Private method that returns the list of orders"""
