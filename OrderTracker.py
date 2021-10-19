@@ -1,15 +1,27 @@
 class OrderTracker():
     def __init__(self,restaurant_name = '', menu_dict = {}, orders_list = []):
         self.name = restaurant_name
-        self.__menu = menu_dict
-        self.orders = orders_list
+        self.menu = menu_dict
+        self.__orders = orders_list
     def __repr__(self):
         return (
             f'{self.name} restaurant has '
-            f'{len(self.orders)} orders beeing prepared'
+            f'{len(self.__orders)} orders beeing prepared'
         )
-    def __get_menu(self):
-        return self.__menu
+    def __get_orders(self):
+        return self.__orders
+
+    def add_order(self, order):
+        orders_list = self.__get_orders()
+        orders_list.append(order)
+        return self.__orders
+    
+    def prepare_order(self):
+        orders_list = self.__get_orders()
+        return orders_list.pop(0)
+    
+    
+    
     
 # Unit tests
 if __name__ == '__main__':
