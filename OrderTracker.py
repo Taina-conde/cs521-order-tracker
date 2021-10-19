@@ -22,9 +22,11 @@ class OrderTracker():
         return orders_list.pop(0)
     
     def __len__(self):
-        return len(self.orders_list)
+        return len(self.__orders)
     
     
+    
+
     
 
     
@@ -40,3 +42,4 @@ if __name__ == '__main__':
         'Tiramissu cake': 9,
     })
     print(carmines_restaurant)
+    print(len(carmines_restaurant))
