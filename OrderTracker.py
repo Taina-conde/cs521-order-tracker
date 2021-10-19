@@ -30,12 +30,13 @@ class OrderTracker():
         orders_list = self.__get_orders()
         return orders_list.pop(0)
     
-    def calculate_bill(self, order):
+    def calculate_bill(self, order_set):
         """Takes an order, calculates the bill and returns the total price"""
         total_price = 0
-        for e in order:
+        for e in order_set:
             total_price += self.menu[e]
-        return total_price * (1 + TAX)
+        
+        return total_price * (1 + self.TAX)
 
     
     def __len__(self):
@@ -54,3 +55,7 @@ if __name__ == '__main__':
     print(carmines)
     print(len(carmines))
     carmines.add_order({'Seafood linguine', 'Bruschetta'})
+    order1 = carmines.prepare_order()
+    print(order1)
+    order1_bill = carmines.calculate_bill(order1)
+    print(order1_bill)
