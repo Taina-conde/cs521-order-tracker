@@ -1,3 +1,12 @@
+"""
+Taina Batista Conde
+Class: CS 521 - Fall 1
+Date: 10/19/2021
+Final Project
+Description: OrderTracker class
+
+"""
+
 class OrderTracker():
     TAX = 0.09
     """Tracks a restaurant's orders in a list and prepares them in
@@ -34,7 +43,9 @@ class OrderTracker():
         """Takes an order, calculates the bill and returns the total price"""
         total_price = 0
         for e in order_set:
-            total_price += self.menu[e]
+            item = e[0]
+            item_quantity = e[1]
+            total_price += self.menu[item] * item_quantity
         
         return total_price * (1 + self.TAX)
 
