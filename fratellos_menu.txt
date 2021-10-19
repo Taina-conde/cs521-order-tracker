@@ -1,0 +1,14 @@
+Fratello's Restaurant
+Cheese Pizza: 25.55
+Green Garden Pizza: 25.55
+Black Truffle Pizza: 30.5
+Seafood Linguine: 23.55
+Penne Alla Vodka: 20.55
+Chicken Parmigiana: 21.55
+Stuffed Mushrooms: 15
+Garlic Bread: 8.55
+Caprese Salad: 18.5
+Tiramisu: 9
+Chocolate Cannoli: 6
+
+
