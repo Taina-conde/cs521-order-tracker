@@ -32,14 +32,18 @@ def get_order():
                     pass
                 item = item_quantity_list[0]
                 quant = int(item_quantity_list[1])
-                if isinstance(item, str) == False:
-                    raise TypeError
+                if item.isalpha() == False:
+                    raise ValueError
 
-            except ValueError:
-                print()
-            except TypeError:
+            except ValueError: 
                 print(
-                    'The first element must be a string and the second an integer'
+                    'The first element must be a string and the '
+                    'second an integer'
+                    )
+            
+            except IndexError:
+                print(
+                    'Please, enter the item and the quantity comma-separated'
                     )
             else:
                 item_quantity_tuple = (item.upper(), quant)
@@ -70,8 +74,8 @@ if __name__ == '__main__':
     fratellos = OrderTracker(name_str, menu_dict)
 
     # prompt the user to make a new order
-    order_list = []
     new_order = get_order()
+    
     print(new_order)
         
 
