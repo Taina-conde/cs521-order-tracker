@@ -106,7 +106,9 @@ if __name__ == '__main__':
 
     print(fratellos)
     order_ready = fratellos.prepare_order()
+    print('. \n . \n .')
     print(f'Order of {order_ready} is ready! Enjoy!')
+    print('. \n . \n .')
     print(f'Calculating the bill ...')
     bill_float = fratellos.calculate_bill(order_ready)
     print_bill(fratellos.name, order_ready, bill_float )
