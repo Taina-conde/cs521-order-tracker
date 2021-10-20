@@ -70,7 +70,6 @@ def get_order():
             else:
                 item_quantity_tuple = (item.upper(), quant)
                 order_set.add(item_quantity_tuple)
-                
                 break
     return order_set
 
