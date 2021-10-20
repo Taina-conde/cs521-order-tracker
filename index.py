@@ -93,7 +93,9 @@ if __name__ == '__main__':
 
     print(fratellos)
     order_ready = fratellos.prepare_order()
+    print(f'Order of {order_ready} is ready! Enjoy!')
     bill_float = fratellos.calculate_bill(order_ready)
+
     
 
     

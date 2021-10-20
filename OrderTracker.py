@@ -106,24 +106,24 @@ if __name__ == '__main__':
     # test prepare_order method
     order_1 = carmines.prepare_order()
     assert order_1 == FIRST_ORDER, (
-                f'Error preparing first order in queue ' 
-                f'{carmines.prepare_order()} != {FIRST_ORDER}'
-            )
+        f'Error preparing first order in queue ' 
+        f'{carmines.prepare_order()} != {FIRST_ORDER}'
+    )
     # test calculate_bill method
     order_1_bill = carmines.calculate_bill(order_1)
     assert order_1_bill == FIRST_ORDER_BILL, (
-            f'Error calculating order bill, '
-            f'{order_1_bill} != {FIRST_ORDER_BILL}'
-        )
+        f'Error calculating order bill, '
+        f'{order_1_bill} != {FIRST_ORDER_BILL}'
+    )
     # test validate_order method
     is_valid_x = carmines.validate_order(ORDER_X)[0]
     assert is_valid_x == True, (
-            f'Error validating a valid order.'
-        )
+        f'Error validating a valid order.'
+    )
     is_valid_y = carmines.validate_order(ORDER_Y)[0]
     assert is_valid_y == False, (
-            f'Error: validate and add an invalid order to queue.'
-        )
+        f'Error: validate and add an invalid order to queue.'
+    )
     assert carmines.get_orders() == [ORDER_X], (
         f'Error adding valid order to queue'
     )
