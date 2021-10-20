@@ -10,7 +10,7 @@ from OrderTracker import OrderTracker
 
 def read_menu(file_str):
     """Reads a file that contains a restaurant's menu, and returns
-    the restaurants name in a string and the menu in a dictionary"""
+    the restaurants name as string and the menu as dictionary"""
     menu_dict = {}
     name_str = ''
     with open('fratellos_menu.txt', 'r') as input_file:
@@ -74,8 +74,16 @@ def get_order():
                 break
     return order_set
 
-def print_bill(total_price, order, menu): 
-    pass
+def print_bill(restaurant_name, order, total_price): 
+    """Writes an output file with the order bill """
+    out_file = open('bill.txt', 'w')
+    out_file.write(f'{restaurant_name} \n')
+    for item_tuple in order:
+        out_file.write(
+            f'{item_tuple[0].capitalize()} #{item_tuple[1]} \n'
+        )
+    out_file.write(f'Total price: {total_price}')
+    out_file.close()
 
 if __name__ == '__main__':
     name_str, menu_dict = read_menu('fratellos_menu.txt')
@@ -99,7 +107,11 @@ if __name__ == '__main__':
     print(fratellos)
     order_ready = fratellos.prepare_order()
     print(f'Order of {order_ready} is ready! Enjoy!')
+    print(f'Calculating the bill ...')
     bill_float = fratellos.calculate_bill(order_ready)
+    print_bill(fratellos.name, order_ready, bill_float )
+    
+
 
     
 
