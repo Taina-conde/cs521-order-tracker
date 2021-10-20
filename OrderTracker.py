@@ -127,6 +127,7 @@ if __name__ == '__main__':
     assert carmines.get_orders() == [ORDER_X], (
         f'Error adding valid order to queue'
     )
+    print("OrderTrack unit test successful")
 
     
     
