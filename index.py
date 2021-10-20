@@ -8,6 +8,24 @@ Description: Main program using OrderTracker class
 """
 from OrderTracker import OrderTracker
 
+def read_menu(file_str):
+    menu_dict = {}
+    name_str = ''
+    with open('fratellos_menu.txt', 'r') as input_file:
+        for num, line_str in enumerate(input_file):
+            # The first line of the file is the restaurant's name
+            if num == 0 :
+                name_str += line_str.strip()
+            else:
+                stripped_str = line_str.strip()
+                # consider only the lines that have content to create the 
+                # menu dictionary
+                if stripped_str != '':
+                    line_list = stripped_str.split(':')
+                    # transform the keys to uppercase to make them uniform
+                    menu_dict[line_list[0].upper()] = float(line_list[1])
+    return name_str, menu_dict
+
 def get_order():
     """ Prompts the user for one order item at a time and returns
     the a set with the order items, quantities in tuples"""
@@ -58,22 +76,7 @@ def print_bill(total_price, order, menu):
     pass
 
 if __name__ == '__main__':
-    menu_dict = {}
-    name_str = ''
-    with open('fratellos_menu.txt', 'r') as input_file:
-        for num, line_str in enumerate(input_file):
-            # The first line of the file is the restaurant's name
-            if num == 0 :
-                name_str += line_str.strip()
-            else:
-                stripped_str = line_str.strip()
-                # consider only the lines that have content to create the 
-                # menu dictionary
-                if stripped_str != '':
-                    line_list = stripped_str.split(':')
-                    # transform the keys to uppercase to make them uniform
-                    menu_dict[line_list[0].upper()] = float(line_list[1])
-
+    name_str, menu_dict = read_menu('fratellos_menu.txt')
     # finished reading the file and getting the necessary info from it.
     # create instance of OrderTracker
     fratellos = OrderTracker(name_str, menu_dict)
