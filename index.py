@@ -9,6 +9,8 @@ Description: Main program using OrderTracker class
 from OrderTracker import OrderTracker
 
 def read_menu(file_str):
+    """Reads a file that contains a restaurant's menu, and returns
+    the restaurants name in a string and the menu in a dictionary"""
     menu_dict = {}
     name_str = ''
     with open('fratellos_menu.txt', 'r') as input_file:
