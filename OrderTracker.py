@@ -38,7 +38,7 @@ class OrderTracker():
                 return  (
                     False, 
                     f'{element[0]} is not in the Menu. '
-                    f'Please, make a new order.'
+                    f'Please, try again.'
                 )
         self.__add_order(order)
         return (True, (

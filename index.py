@@ -79,12 +79,15 @@ if __name__ == '__main__':
     # the order is invalid if one of the items is not in the menu
     # make two orders just to test the program
     for num in range(2):
-        print(f'# ORDER NUMBER {num + 1}')
+        print('-' * 79)
         is_valid = False
         while is_valid == False:
+            print(f'# ORDER NUMBER {num + 1}')
             new_order = get_order()
             is_valid, message = fratellos.validate_order(new_order)
             print(message)
+            print('-' * 79)
+
     print(fratellos)
     
     
