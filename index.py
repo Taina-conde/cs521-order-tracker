@@ -31,10 +31,10 @@ def get_order():
             try:
                 item_quantity_list = order_input.split(',')
                 if len(item_quantity_list) >= 3:
-                    pass
-                item = item_quantity_list[0]
-                quant = int(item_quantity_list[1])
-                if item.isalpha() == False:
+                    raise IndexError
+                item = item_quantity_list[0].strip()
+                quant = int(item_quantity_list[1].strip())
+                if item.isdigit() == True:
                     raise ValueError
 
             except ValueError: 
@@ -45,7 +45,7 @@ def get_order():
             
             except IndexError:
                 print(
-                    'Please, enter the item and the quantity comma-separated'
+                    'Please, enter one item and the quantity comma-separated.'
                     )
             else:
                 item_quantity_tuple = (item.upper(), quant)
@@ -75,10 +75,24 @@ if __name__ == '__main__':
     # create instance of OrderTracker
     fratellos = OrderTracker(name_str, menu_dict)
 
-    # prompt the user to make a new order
-    new_order = get_order()
+    # prompt the user to make a new order until he/she makes a valid order
+    # the order is invalid if one of the items is not in the menu
+    is_valid = False
+    while is_valid == False:
+        new_order = get_order()
+        is_valid, message = fratellos.validate_order(new_order)[0], \
+            fratellos.validate_order(new_order)[1]
+        print(message)
 
-    print(new_order)
+    #
+    
+    
+   
+
+
+
+
+
         
 
         

@@ -27,19 +27,21 @@ class OrderTracker():
 
     def validate_order(self, order):
         """ Checks if the order items are in the menu and add the order
-        to the list if they are. Ask for a new order if one of the items
-        is not in the menu"""
+        to the list if they are - returns (True, message). 
+        Returns (False, item) if item is not in the menu"""
         for element in order:
             if element[0] not in self.menu.keys():
-                return (
+                return  (
+                    False, 
                     f'{element[0]} is not in the Menu. '
                     f'Please, make a new order.'
                 )
+
         orders_list = self.__add_order(order)
-        return (
+        return (True, (
             f'Your order of {order} was added to the queue! '
             f'Orders in queue: {len(orders_list) - 1}'
-            )
+            ))
             
 
 
