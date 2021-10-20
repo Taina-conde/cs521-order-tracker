@@ -20,10 +20,10 @@ class OrderTracker():
     def __repr__(self):
         return (
             f'{self.name} has {len(self.__orders)} orders beeing prepared. '
-            f'Orders queue: {self.__get_orders()}'
+            f'Orders queue: {self.__orders}'
 
         )
-    def __get_orders(self):
+    def get_orders(self):
         """Returns the list of orders"""
         return self.__orders
 
@@ -51,13 +51,13 @@ class OrderTracker():
     def __add_order(self, order):
         """Adds an order to the end of the list of orders 
         and returns the modified list of orders"""
-        orders_list = self.__get_orders()
+        orders_list = self.get_orders()
         orders_list.append(order)
     
     def prepare_order(self):
         """Removes the first order from the list of 
         orders and returns the order that was 'prepared' (removed)"""
-        orders_list = self.__get_orders()
+        orders_list = self.get_orders()
         return orders_list.pop(0)
     
     def calculate_bill(self, order_set):
@@ -78,16 +78,55 @@ class OrderTracker():
     
 # Unit tests
 if __name__ == '__main__':
-    carmines = OrderTracker('Carmines', {
-        'Margerita Pizza': 25,
-        'Seafood linguine': 40.5,
-        'Bruschetta': 16.55,
-        'Tiramissu cake': 9,
-    })
-    print(carmines)
-    print(len(carmines))
-    carmines.add_order({('Seafood linguine', 2), ('Bruschetta', 1)})
-    order1 = carmines.prepare_order()
-    print(order1)
-    order1_bill = carmines.calculate_bill(order1)
-    print(order1_bill)
+    TAX = 0.09
+    NAME = 'Carmines Restaurant'
+    MENU = {
+        'PIZZA': 25,
+        'SEAFOOD LINGUINE': 40.5,
+        'BRUSCHETTA': 16.55,
+        'TIRAMISU': 9,
+    }
+    FIRST_ORDER =  {('PIZZA', 1), ('TIRAMISU', 2)}
+    FIRST_ORDER_BILL = round(
+            (MENU['PIZZA'] * 1 + MENU['TIRAMISU'] * 2) * (1 + TAX),
+            2
+        )
+    ORDER_X = {('SEAFOOD LINGUINE', 2), ('BRUSCHETTA', 1)}
+    ORDER_Y = {('NOT IN MENU', 1)}
+    
+    # instantiate OrderTracker obj
+    carmines = OrderTracker( NAME, MENU , [FIRST_ORDER])
+    # Assert tests
+    # test get_orders method
+    orders_list = carmines.get_orders()
+    assert orders_list == [FIRST_ORDER], (
+        f'Error getting the orders list '
+        f'{orders_list} != {list(FIRST_ORDER)}'
+    )
+    # test prepare_order method
+    order_1 = carmines.prepare_order()
+    assert order_1 == FIRST_ORDER, (
+                f'Error preparing first order in queue ' 
+                f'{carmines.prepare_order()} != {FIRST_ORDER}'
+            )
+    # test calculate_bill method
+    order_1_bill = carmines.calculate_bill(order_1)
+    assert order_1_bill == FIRST_ORDER_BILL, (
+            f'Error calculating order bill, '
+            f'{order_1_bill} != {FIRST_ORDER_BILL}'
+        )
+    # test validate_order method
+    is_valid_x = carmines.validate_order(ORDER_X)[0]
+    assert is_valid_x == True, (
+            f'Error validating a valid order.'
+        )
+    is_valid_y = carmines.validate_order(ORDER_Y)[0]
+    assert is_valid_y == False, (
+            f'Error: validate and add an invalid order to queue.'
+        )
+    assert carmines.get_orders() == [ORDER_X], (
+        f'Error adding valid order to queue'
+    )
+
+    
+    

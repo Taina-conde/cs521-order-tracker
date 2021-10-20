@@ -54,6 +54,9 @@ def get_order():
                 break
     return order_set
 
+def print_bill(total_price, order, menu): 
+    pass
+
 if __name__ == '__main__':
     menu_dict = {}
     name_str = ''
@@ -89,6 +92,10 @@ if __name__ == '__main__':
             print('-' * 79)
 
     print(fratellos)
+    order_ready = fratellos.prepare_order()
+    bill_float = fratellos.calculate_bill(order_ready)
+    
+
     
     
    
