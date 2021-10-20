@@ -19,7 +19,9 @@ class OrderTracker():
 
     def __repr__(self):
         return (
-            f'{self.name} has {len(self.__orders)} orders beeing prepared'
+            f'{self.name} has {len(self.__orders)} orders beeing prepared. '
+            f'Orders queue: {self.__get_orders()}'
+
         )
     def __get_orders(self):
         """Returns the list of orders"""
@@ -30,17 +32,18 @@ class OrderTracker():
         to the list if they are - returns (True, message). 
         Returns (False, item) if item is not in the menu"""
         for element in order:
+            # order is a set of tuples. The first element of a tuple is the
+            # item and the second the quantity
             if element[0] not in self.menu.keys():
                 return  (
                     False, 
                     f'{element[0]} is not in the Menu. '
                     f'Please, make a new order.'
                 )
-
-        orders_list = self.__add_order(order)
+        self.__add_order(order)
         return (True, (
             f'Your order of {order} was added to the queue! '
-            f'Orders in queue: {len(orders_list) - 1}'
+            f'Orders in queue: {len(self.__orders) - 1}'
             ))
             
 
@@ -50,7 +53,6 @@ class OrderTracker():
         and returns the modified list of orders"""
         orders_list = self.__get_orders()
         orders_list.append(order)
-        return self.__orders
     
     def prepare_order(self):
         """Removes the first order from the list of 

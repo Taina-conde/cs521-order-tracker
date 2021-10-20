@@ -25,8 +25,8 @@ def get_order():
                 is_order_done = True
         while is_order_done == False:
             order_input = input(
-                    'Enter one order item and quantity separated by a comma'
-                    '- for example: Your Dish, 1 '
+                    'Enter one order item and quantity separated by a comma '
+                    '- for example - Your Dish, 1 : '
                     )
             try:
                 item_quantity_list = order_input.split(',')
@@ -77,14 +77,15 @@ if __name__ == '__main__':
 
     # prompt the user to make a new order until he/she makes a valid order
     # the order is invalid if one of the items is not in the menu
-    is_valid = False
-    while is_valid == False:
-        new_order = get_order()
-        is_valid, message = fratellos.validate_order(new_order)[0], \
-            fratellos.validate_order(new_order)[1]
-        print(message)
-
-    #
+    # make two orders just to test the program
+    for num in range(2):
+        print(f'# ORDER NUMBER {num + 1}')
+        is_valid = False
+        while is_valid == False:
+            new_order = get_order()
+            is_valid, message = fratellos.validate_order(new_order)
+            print(message)
+    print(fratellos)
     
     
    
