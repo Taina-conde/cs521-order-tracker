@@ -90,6 +90,14 @@ if __name__ == '__main__':
     # create instance of OrderTracker
     fratellos = OrderTracker(name_str, menu_dict)
 
+    #initial messages for the user
+    print(
+        f'\n Welcome to {fratellos.name}!\n', 
+        f'\n This is today\'s Menu: \n'
+    )
+    for k, val in fratellos.menu.items():
+        print(f'{k.capitalize():20s} ---- ${val}')
+
     # prompt the user to make a new order until he/she makes a valid order
     # the order is invalid if one of the items is not in the menu
     # make two orders just to test the program
